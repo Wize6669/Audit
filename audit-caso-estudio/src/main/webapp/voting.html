@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conteo Votación</title>
+    <title>Curul</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
 
     <!-- Bootstrap CSS -->
@@ -15,11 +15,29 @@
 
 <body>
 
+    <h1 class="title">Sistema de Votación de la Asamblea Nacional</h1>
+    <div class="container-fluid" id="container">
+        <form class="h100" action="Counter" method="POST">
+            <div class="row h100">
+                <div class="col h100">
+                    <button id="yes-btn" type="submit" class="btn btn-success" name="option" value="SI">
+                            <b>Si</b>
+                    </button>
+                </div>
+                <div class="col h100">
+                    <button id="no-btn" type="submit" class="btn btn-danger" name="option" value="NO">
+                        <b>No</b>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-
 </body>
 
 </html>
