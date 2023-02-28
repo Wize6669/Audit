@@ -1,0 +1,26 @@
+* {
+    padding: 0%;
+    border: 1px solid red;
+}
+
+.title {
+    color: black;
+}
+
+#container {
+    text-align: center;
+}
+
+#yes {
+    width: 100%;
+    height: 500px;
+}
+
+#no {
+    width: 100%;
+    height: 500px;
+}
+
+#btnYes {
+    text-size-adjust: 50px;
+}
