@@ -18,8 +18,8 @@ import java.time.Instant;
  *
  * @author luism
  */
-@WebServlet(name = "Counter", urlPatterns = {"/Counter"})
-public class CounterController extends HttpServlet {
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,37 +32,22 @@ public class CounterController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String option = (String) request.getParameter("option");
+        response.setContentType("text/html;charset=UTF-8");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         
-
-                
-        if(option!=null){
-            HttpSession session = request.getSession();
-            User user = (User)session.getAttribute("user");
-            
-            if(user==null){
-                response.sendRedirect("./login.html");
-                return;
-            }
-
-
-            
-            switch (option) {
-                case "SI": DualCounter.dualCounter.putA();
-                    break;
-                case "NO": DualCounter.dualCounter.putB();
-                    break;
-                default:
-
-            }
-
-            user.setEndInstant(Instant.now());
-            session.invalidate();
-            response.sendRedirect("./login.html");
+        User user = User.auth(username, password);
+        if(user==null){
+            response.setStatus(300);
+            response.setHeader("Location", "./login.html");
+            return;
         }
-        response.setContentType("application/json");
-        response.getWriter().write(String.format("{\"SI\":%d,\"NO\":%d}\n", DualCounter.dualCounter.getA(),DualCounter.dualCounter.getB()));
-
+        
+        user.setStartInstant(Instant.now());
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        response.setStatus(300);
+        response.setHeader("Location", "./");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
