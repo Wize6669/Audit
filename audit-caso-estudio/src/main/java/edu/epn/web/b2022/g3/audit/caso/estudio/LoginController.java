@@ -38,16 +38,14 @@ public class LoginController extends HttpServlet {
         
         User user = User.auth(username, password);
         if(user==null){
-            response.setStatus(300);
-            response.setHeader("Location", "./");
+            response.sendRedirect("./voting.html");
             return;
         }
         
         user.setStartInstant(Instant.now());
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        response.setStatus(300);
-        response.setHeader("Location", "./voting.html");
+        response.sendRedirect("./voting.html");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
