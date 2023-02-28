@@ -41,7 +41,7 @@ public class CounterController extends HttpServlet {
                 
         }
         response.setContentType("application/json");
-        response.getWriter().write(String.format("{\"SI\":%d,\"NO\":%d}", DualCounter.dualCounter.getA(),DualCounter.dualCounter.getB()));
+        response.getWriter().write(String.format("{\"SI\":%d,\"NO\":%d}\n", DualCounter.dualCounter.getA(),DualCounter.dualCounter.getB()));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

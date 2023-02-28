@@ -11,14 +11,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     <body>
         <div>
-            <div>                
-            </div>
+            <div>Si</div>
+            <div id="si-counter"></div>
+        </div>
+        <div>
+            <div>No</div>
+            <div id="no-counter"></div>
         </div>
     </body>
     <script>
-        function updateParcel(){
-            setTimeout(updateParcel, 1000);
+        function updateCounter(counter){
+            document.getElementById("no-counter").textContent=counter.NO.toString();
+            document.getElementById("si-counter").textContent=counter.SI.toString();
         }
-        updateParcel();
+        
+        function updateLoop(){
+            const req = new XMLHttpRequest();
+            req.open("GET", "Counter");
+            req.onreadystatechange = () => {
+              if (req.readyState === 4) {
+                updateCounter(JSON.parse(req.responseText));
+              }
+            };
+            
+            req.send();
+            
+            setTimeout(updateLoop, 1000);
+        }
+        
+        updateLoop();
     </script>
 </html>
